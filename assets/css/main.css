@@ -1,0 +1,38 @@
+#close-window:hover {
+    background-color: rgb(180, 50, 50);
+    color: white;
+}
+
+#nav {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-app-region: drag;
+}
+.btn {
+    -webkit-user-select: auto;
+    user-select: auto;
+    -webkit-app-region: no-drag;
+}
+
+.nav-button-sm {
+    margin: 5px;
+}
+/* Body Border */
+body:before, body:after {
+    content: "";
+    position: fixed;
+    background: #292b2c;
+    left: 0;
+    right: 0;
+    height: 2px;
+}
+body:before {
+    top: 0;
+}
+body:after {
+    bottom: 0;
+}
+html {
+    border-left: 2px solid #292b2c;
+    border-right: 2px solid #292b2c;  
+}
