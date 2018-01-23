@@ -1,0 +1,11 @@
+{
+    "switches": [
+        {"name": "sw-ar-p", "ports": 26, "ip": "010.058.021.201", "trunks": [{"to": "sw-ar-b", "port": 1},{"to": "sw-h-a", "port": 2 }]},
+        {"name": "sw-ar-b", "ports": 24, "ip": "010.058.021.202"},
+        {"name": "sw-h-a", "ports": 24, "ip": "010.058.021.203"}
+    ],
+    "devices": [
+        {"name": "AR-G21", "ports": 26, "ip": "10.58.21.201"},
+        {"name": "AR-G21", "ports": 26, "ip": "10.58.21.201"}
+    ]
+}

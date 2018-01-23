@@ -1,24 +1,28 @@
 {
-  "name": "electron-quick-start",
+  "name": "electron-bootstrap-vue-base",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "A minimal Electron application with bootstrap and vue integration",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "release": "build",
+    "postinstall": "electron-builder install-app-deps"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/noelli/electron-bootstrap-vue-base",
   "keywords": [
     "Electron",
-    "quick",
-    "start",
-    "tutorial",
+    "bootstrap4",
+    "vue",
     "demo"
   ],
-  "author": "GitHub",
+  "author": "noelli",
   "license": "CC0-1.0",
-  "devDependencies": {
-    "electron": "1.7.9",
-    "bootstrap": "4.0.0-alpha.6",
-    "vue": "2.5.8"
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "electron": "^1.7.11",
+    "jquery": "^3.3.1",
+    "node-mysql": "^0.4.2",
+    "popper.js": "^1.12.9",
+    "vue": "^2.5.13"
   }
 }
