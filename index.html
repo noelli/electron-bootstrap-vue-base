@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="./assets/css/main.css">
   </head>
   <body>
+    <!-- ### Navbar and first Vue element ### -->
     <ul class="nav justify-content-between bg-primary fixed-top nav-pills" id="nav">
       <li class="nav-item">
         <div class="btn-group btn-group-sm nav-button-sm" role="group">
-          <button type="button" class="btn btn-secondary" id="open-file"  v-on:click="open"><i class="fa fa-folder-open"></i></button>
-          <button type="button" class="btn btn-secondary" id="save-file"  v-on:click="save"><i class="fa fa-save"></i></button>
           <button type="button" class="btn btn-secondary" id="rundb"  v-on:click="rundb"><i class="fa fa-database"></i></button>
-          <select class="btn btn-secondary" id="categorySelect" @change="changeCategory" v-model="selectedCategory">
+          <select class="btn btn-secondary" id="categorySelect" @change="changeCategory" v-model="selectedCategory" required>
+            <option value="" hidden>Select Category</option>
             <option v-for="category in categories" :value="category">{{ category }}</option>
           </select>
         </div>
@@ -29,11 +29,12 @@
         </div>
       </li>
     </ul>
+    <!-- ### main container and second Vue element ### -->
     <main role="main" class="container" id="main">
       <table class="table table-hover table-sm table-bordered">
           <thead class="thead-dark">
             <tr>
-              <th scope="col" v-for="column in columns" :id="column.name">{{column.name}}</th>
+              <th scope="col" v-for="column in columns" :id="column">{{column}}</th>
             </tr>
             </thead>
             <tbody>
@@ -44,8 +45,7 @@
       </table>
     </main>
     <script>
-    // You can also require other files to run in this process
-    
+    // ################# JS requirements ###################
     var $ = require('jquery');
     window.$ = $;
     require('bootstrap');
