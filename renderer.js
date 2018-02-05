@@ -61,35 +61,98 @@ const daten = {
   categories: getCategories(true),
   categoryfields: getCategories(false),
   selectedCategory: {},
+  editor: false,
+  addselector: false,
+  addrow: {},
+  whichRow: "",
+  editbox: {},
+  submitrow: [],
   columns: ["bla",  "blablussb",  "blablussb",  "blablussb",  "blablussb",  "blablussb"],
   rows: [
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
-    {test1: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" }
+    {name: "bla", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "bla1", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "bla2", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "bla3", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "bla4", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "bla5", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "bla6", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "bla7", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "bla8", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "bla9", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "bla0", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "blaß", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "blaq", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "blaw", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "blae", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "blar", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "blat", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "blaz", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "blai", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "blao", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" },
+    {name: "blap", test2: "blablussb", test3: "blablussb", test4: "blablussb", test5: "blablussb", test6: "blablussb" }
   ]};
 
 var main = new Vue({
   el: '#main',
   data: daten,
-  methods: {}
+  methods: {
+    edit: function (rowindex, event) {
+      this.whichRow = rowindex;
+    },
+    submit: function (rowname, rowindex, event) {
+      this.whichRow = "";
+      var values = this.rows[rowindex];
+      delete values['name'];
+      var update = connection.query("UPDATE dokuapp." + this.selectedCategory + " SET ? WHERE ?", [values, {name: rowname}]);
+      update
+        .on('error', function(err) {
+          if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+            reconnect();
+          }
+          console.log("sql: " + update.sql)
+          console.log(err)  // Handle error, an 'end' event will be emitted after this as well
+        })
+        .on('end', function() {
+          // all rows have been received
+        });
+        nav.changeCategory();
+    },
+    cancel: function (event) {
+      this.whichRow = "";
+      this.addselector = true;
+      this.addrow = {};
+      nav.changeCategory();
+    },
+    toggleadd: function (event) {
+      this.addselector = true;
+      this.addrow = {};
+      for (i = 0; i < this.categoryfields[this.selectedCategory].length; i++) {
+        if (this.categoryfields[this.selectedCategory][i] === "name"){
+          this.addrow[this.categoryfields[this.selectedCategory][i]] = "name";
+        } else {
+          this.addrow[this.categoryfields[this.selectedCategory][i]] = "";
+        }
+      }
+    },
+    add: function (event) {
+      this.addselector = false;
+      delete this.addrow['name'];
+      var add = connection.query("INSERT INTO dokuapp." + this.selectedCategory + " SET ? ", [this.addrow]);
+      add
+        .on('error', function(err) {
+          if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+            reconnect();
+          }
+          console.log("sql: " + add.sql)
+          console.log(err)  // Handle error, an 'end' event will be emitted after this as well
+        })
+        .on('end', function() {
+          // all rows have been received
+        });
+        nav.changeCategory();
+    }
+
+  }
 })
 
 var nav = new Vue({
@@ -169,8 +232,17 @@ var nav = new Vue({
           .on('end', function() {
             // all rows have been received
           });
+          this.editbox = {};
           this.columns = new_columns;
+          for (column in this.columns) {
+            this.editbox[column] = "";
+          }
           this.rows = new_rows;
+          this.whichRow = "";
+          this.addselector = false
+      },
+      search: function (event) {
+        //
       }
     }
   })

@@ -13,11 +13,12 @@
     <ul class="nav justify-content-between bg-primary fixed-top nav-pills" id="nav">
       <li class="nav-item">
         <div class="btn-group btn-group-sm nav-button-sm" role="group">
-          <button type="button" class="btn btn-secondary" id="rundb"  v-on:click="rundb"><i class="fa fa-database"></i></button>
+          <button class="btn btn-secondary" id="rundb" type="button"  v-on:click="rundb"><i class="fa fa-database"></i></button>
           <select class="btn btn-secondary" id="categorySelect" @change="changeCategory" v-model="selectedCategory" required>
             <option value="" hidden>Select Category</option>
             <option v-for="category in categories" :value="category">{{ category }}</option>
           </select>
+          <button class="btn btn-secondary" type="button" id="searchbutton" v-on:click="search"><i class="fa fa-search"></i></button>
         </div>
       </li>
       <li class="nav-item">
@@ -30,19 +31,53 @@
       </li>
     </ul>
     <!-- ### main container and second Vue element ### -->
-    <main role="main" class="container" id="main">
+    <main  role="main" class="" id="main">
       <table class="table table-hover table-sm table-bordered">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col" v-for="column in columns" :id="column">{{column}}</th>
-            </tr>
-            </thead>
-            <tbody>
-              <tr v-for="row in rows">
-                <td v-for="column in row">{{column}}</td>
-              </tr>
-            </tbody>
+        <thead class="thead-dark">
+          <tr>
+            <th>Options</th> <th scope="col" v-for="column in columns" :id="column">{{column}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(row, index) in rows">
+            <td>
+              <button v-if="whichRow === ''" class="btn btn-secondary btn-sm" type="button" v-on:click="edit(index, $event)">
+                <i class="fa fa-pencil"></i>
+              </button>
+              <div v-if="whichRow === index" class="btn-group btn-group-sm nav-button-sm" role="group" >
+                <button class="btn btn-secondary btn-sm" type="button" v-on:click="submit(row['name'], index, $event)">
+                  <i class="fa fa-check"></i>
+                </button>
+                <button v-if="whichRow === index"class="btn btn-secondary btn-sm" type="button" v-on:click="cancel">
+                    <i class="fa fa-close"></i>
+                </button>
+              </div>
+            </td>
+            <td v-for="(column, innerindex) in row" >
+              <input v-if="whichRow === index && row['name'] != column" type="text" class="form-control form-control-sm" v-model="rows[index][innerindex]">
+              <span v-else>{{column}}</span>
+            </td>
+          </tr>
+          <tr v-if="addselector">
+            <td>
+              <div class="btn-group btn-group-sm nav-button-sm" role="group" >
+                <button class="btn btn-secondary btn-sm" type="button" v-on:click="add">
+                  <i class="fa fa-check"></i>
+                </button>
+                <button class="btn btn-secondary btn-sm" type="button" v-on:click="cancel">
+                    <i class="fa fa-close"></i>
+                </button>
+              </div>
+            </td>
+            <td v-for="(column, index) in addrow" >
+              <input v-if="column != 'name'" type="text" class="form-control form-control-sm" v-model="addrow[index]">
+            </td>
+          </tr>
+        </tbody>
       </table>
+      <button v-if="!addselector" class="btn btn-secondary btn-sm" type="radio" v-on:click="toggleadd">
+        <i class="fa fa-plus"></i>
+      </button>
     </main>
     <script>
     // ################# JS requirements ###################
